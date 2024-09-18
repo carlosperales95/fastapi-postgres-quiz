@@ -2,9 +2,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-URL_DATABASE = 'postgresql://postgres:P4NC4K3wc0c0n0t!@localhost:5432/QuizApplication'
+import os
+from dotenv import load_dotenv
 
-engine = create_engine(URL_DATABASE)
+load_dotenv()
+
+MY_ENV_VAR = os.getenv('URL_DATABASE')
+
+engine = create_engine(MY_ENV_VAR)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
